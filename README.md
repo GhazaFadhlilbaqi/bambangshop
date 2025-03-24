@@ -77,6 +77,17 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+>In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+
+In the Observer pattern, declaring Subscriber as an interface type (or ```trait``` in Rust) ensures extensibility and adherence to SOLID principles. However, in BambangShop, only a single Model struct will suffice since there is only one type of Subscriber in view without the short-term expectation of introducing any others.
+
+>id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+In this case, the use of ```DashMap``` is justified since it provides a direct, efficient map from product IDs to their subscribers. Unlike ```Vec``` where linear searches would be required for lookups, ```DashMap``` provides constant-time access that improves performance, especially as data grows. It also supports safe multithreaded access and is therefore more appropriate for multithreaded applications like BambangShop. Moreover, with a Singleton offering a centralised Subscriber map, there is no fragmentation of data. While a ```Vec``` would do the job for small-scale use cases, ```DashMap``` is the way to go for performance and scalability.
+
+>When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+```DashMap``` and the Singleton pattern serve different but complementary roles in this case. The Singleton pattern, managed through ```lazy_static!```, ensures a single, centralized instance of the subscriber map, preventing unnecessary cloning and initialization. However, it does not inherently handle concurrent access issues. ```DashMap```, on the other hand, provides built-in thread safety, allowing multiple threads to safely access and modify the shared subscriber map without requiring manual synchronization. Since BambangShop operates in a multithreaded environment, both are necessary—Singleton ensures a single instance, while ```DashMap``` guarantees safe concurrent access.
 
 #### Reflection Publisher-2
 
