@@ -91,4 +91,16 @@ In this case, the use of ```DashMap``` is justified since it provides a direct, 
 
 #### Reflection Publisher-2
 
+>In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+Separating Service and Repository from the Model follows the Single Responsibility Principle (SRP) and Separation of Concerns, ensuring a modular and maintainable codebase. The Model represents database data, the Repository handles data access, and the Service processes and fetches data from the Repository. This separation reduces coupling, making the system more scalable, extensible, and easier to modify. It also improves testability by allowing independent testing of each component. Thus, this approach ensures cleaner architecture and smoother development.
+
+>What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+If we place everything in the Model only, it would be full of business logic and data storage, and the code would be less maintainable. That kind of lack of separation of concerns would lead to tight coupling between models like Program, Subscriber, and Notification, with added complexity and reduced flexibility. That way, it would be much more difficult to change or scale the system.
+
+>Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+Postman is a powerful tool for testing web endpoints and ensuring responses match expectations. It allows easy customization of HTTP methods like CRUD without writing code, making debugging faster. Features like saving requests/responses, managing headers and cookies, and API documentation are especially useful for testing and collaboration. This makes Postman an helpful tool for both my group project and future software engineering work.
+
 #### Reflection Publisher-3
