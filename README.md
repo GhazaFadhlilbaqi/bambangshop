@@ -104,3 +104,15 @@ If we place everything in the Model only, it would be full of business logic and
 Postman is a powerful tool for testing web endpoints and ensuring responses match expectations. It allows easy customization of HTTP methods like CRUD without writing code, making debugging faster. Features like saving requests/responses, managing headers and cookies, and API documentation are especially useful for testing and collaboration. This makes Postman an helpful tool for both my group project and future software engineering work.
 
 #### Reflection Publisher-3
+
+>Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+In this tutorial, the push model is used. When changes occur, such as creation, deletion, or updates, the Notification service immediately sends updates to all subscribers without them needing to request it. This is implemented in the notify function, where the publisher actively pushes notifications to subscribers.
+
+>What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+The pull model simplifies the observable and gives subscribers control over when and what data to retrieve. However, it can be inefficient since subscribers must constantly check for updates, leading to high CPU usage and potential delays in notifications. This could result in high latency compared to the push model, where updates are sent immediately. On the other hand, in the push model, a large number of subscribers could create a long queue, potentially delaying notifications due to computational limits.
+
+>Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+This causes the process to halt while sending notifications, as it waits for each subscriber before proceeding. As the number of subscribers grows, this leads to higher latency and reduced efficiency. The sequential processing makes the system less scalable, slowing down notifications.
